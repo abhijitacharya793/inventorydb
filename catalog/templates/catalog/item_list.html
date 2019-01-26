@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Item List</h1>
+  {% if item_list %}
+  <ul>
+    {% for item in item_list %}
+      <li>
+        <a href="{{ item.get_absolute_url }}">{{ item.title }}</a> <!--({{item.manufacturer}})-->
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no items in the inventory.</p>
+  {% endif %}
+{% endblock %}

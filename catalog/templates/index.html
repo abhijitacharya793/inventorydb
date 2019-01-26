@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>ARC Inventory Home</h1>
+  <p>Welcome to ARC Inventory, a website developed by <em>ARC</em>!</p>
+  <h2>Dynamic content</h2>
+  <p>The inventory has the following record counts:</p>
+  <ul>
+    <li><strong>Items:</strong> {{ num_books }}</li>
+    <li><strong>Numbers:</strong> {{ num_instances }}</li>
+    <li><strong>Numbers available:</strong> {{ num_instances_available }}</li>
+    <li><strong>Manufacturers:</strong> {{ num_manufacturers }}</li>
+  </ul>
+  <p>You have previously visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+{% endblock %}

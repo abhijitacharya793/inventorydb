@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Title: {{ item.title }}</h1>
+
+  <p><strong>Manufacturer:</strong> <a href="">{{ item.manufacturer }}</a></p> <!-- author detail link not yet defined -->
+  <p><strong>Summary:</strong> {{ item.summary }}</p>
+  <!-- <p><strong>ISBN:</strong> {{ book.isbn }}</p> -->
+  <!-- <p><strong>Language:</strong> {{ book.language }}</p> -->
+  <p><strong>Itemtype:</strong> {% for itemtype in item.itemtype.all %} {{ itemtype }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Numbers</h4>
+
+    {% for number in item.iteminstance_set.all %}
+      <hr>
+      <p class="{% if number.status == 'a' %}text-success{% elif number.status == 'm' %}text-danger{% else %}text-warning{% endif %}">{{ number.get_status_display }}</p>
+      {% if number.status != 'a' %}
+        <p><strong>Due to be returned:</strong> {{number.due_back}}</p>
+      {% endif %}
+      <!-- <p><strong>Imprint:</strong> {{copy.imprint}}</p> -->
+      <p class="text-muted"><strong>Id:</strong> {{number.id}}</p>
+    {% endfor %}
+  </div>
+{% endblock %}
